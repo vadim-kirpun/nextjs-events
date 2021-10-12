@@ -4,6 +4,7 @@ import Button from "../ui/button";
 import DateIcon from "../icons/date-icon";
 import AddressIcon from "../icons/address-icon";
 import ArrowRightIcon from "../icons/arrow-right-icon";
+import { formatDate, formatAddress } from "../../helpers";
 import styles from "./event-item.module.css";
 
 interface EventItemProps {
@@ -13,13 +14,8 @@ interface EventItemProps {
 const EventItem = (props: EventItemProps) => {
   const { id, title, image, date, location } = props.data;
 
-  const humanReadableDate = new Date(date).toLocaleDateString("en-EN", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
-  const formattedAddress = location.replace(", ", "\n");
+  const humanReadableDate = formatDate(date);
+  const formattedAddress = formatAddress(location);
 
   const exploreLink = `/events/${id}`;
 
