@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { memo } from "react";
 import type { Event } from "../data";
+import Button from "./ui/button";
 import styles from "./event-item.module.css";
 
 interface EventItemProps {
@@ -38,7 +38,7 @@ const EventItem = (props: EventItemProps) => {
         </div>
 
         <div className={styles.actions}>
-          <Link href={exploreLink}>Explore Event</Link>
+          <Button href={exploreLink}>Explore Event</Button>
         </div>
       </div>
     </li>
