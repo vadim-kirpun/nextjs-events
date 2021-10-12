@@ -1,5 +1,5 @@
 import EventItem from "./event-item";
-import type { Event } from "../data";
+import type { Event } from "../../data";
 import styles from "./event-list.module.css";
 
 interface EventListProps {

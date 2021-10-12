@@ -1,6 +1,9 @@
 import { memo } from "react";
-import type { Event } from "../data";
-import Button from "./ui/button";
+import type { Event } from "../../data";
+import Button from "../ui/button";
+import DateIcon from "../icons/date-icon";
+import AddressIcon from "../icons/address-icon";
+import ArrowRightIcon from "../icons/arrow-right-icon";
 import styles from "./event-item.module.css";
 
 interface EventItemProps {
@@ -29,16 +32,24 @@ const EventItem = (props: EventItemProps) => {
           <h2>{title}</h2>
 
           <div className={styles.date}>
+            <DateIcon />
             <time>{humanReadableDate}</time>
           </div>
 
           <div className={styles.address}>
+            <AddressIcon />
             <address>{formattedAddress}</address>
           </div>
         </div>
 
         <div className={styles.actions}>
-          <Button href={exploreLink}>Explore Event</Button>
+          <Button href={exploreLink}>
+            <span>Explore Event</span>
+
+            <span className={styles.icon}>
+              <ArrowRightIcon />
+            </span>
+          </Button>
         </div>
       </div>
     </li>
