@@ -1,5 +1,11 @@
-const Layout = () => {
-  return <>123</>;
-};
+import { memo, PropsWithChildren } from "react";
+import MainHeader from "./MainHeader";
 
-export default Layout;
+const Layout = (props: PropsWithChildren<{}>) => (
+  <>
+    <MainHeader />
+    <main>{props.children}</main>
+  </>
+);
+
+export default memo(Layout);
