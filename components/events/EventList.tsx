@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { Event } from "data";
 import EventItem from "./EventItem";
 import styles from "./styles/event-list.module.css";
@@ -18,4 +19,4 @@ const EventList = (props: EventListProps) => {
   );
 };
 
-export default EventList;
+export default memo(EventList);

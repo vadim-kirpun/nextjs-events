@@ -1,10 +1,11 @@
-import { memo } from "react";
+import { memo, useCallback, useRef } from "react";
 import Button from "ui/Button";
 import styles from "./styles/events-search.module.css";
 
 const inputs = [
   {
     id: "year",
+    label: "Year",
     options: [
       { value: "2021", label: "2021" },
       { value: "2022", label: "2022" },
@@ -12,6 +13,7 @@ const inputs = [
   },
   {
     id: "month",
+    label: "Month",
     options: [
       { value: "1", label: "January" },
       { value: "2", label: "February" },
@@ -29,26 +31,46 @@ const inputs = [
   },
 ];
 
-const EventsSearch = () => (
-  <form className={styles.form}>
-    <div className={styles.controls}>
-      {inputs.map(({ id, options }) => (
-        <div key={id} className={styles.control}>
-          <label htmlFor={id}>{id[0].toUpperCase() + id.substr(1)}</label>
+type EventSearchProps = {
+  onSearch: (year: string, month: string) => void;
+};
 
-          <select id={id}>
-            {options.map(({ value, label }) => (
-              <option value={value} key={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </div>
-      ))}
-    </div>
+const EventsSearch = (props: EventSearchProps) => {
+  const yearRef = useRef<HTMLSelectElement>(null);
+  const monthRef = useRef<HTMLSelectElement>(null);
 
-    <Button>Search</Button>
-  </form>
-);
+  const submitHandler = useCallback((event) => {
+    event.preventDefault();
+
+    if (yearRef.current && monthRef.current) {
+      const selectedYear = yearRef.current.value;
+      const selectedMonth = monthRef.current.value;
+
+      props.onSearch(selectedYear, selectedMonth);
+    }
+  }, []);
+
+  return (
+    <form className={styles.form} onSubmit={submitHandler}>
+      <div className={styles.controls}>
+        {inputs.map(({ id, label, options }) => (
+          <div key={id} className={styles.control}>
+            <label htmlFor={id}>{label}</label>
+
+            <select id={id} ref={id === "year" ? yearRef : monthRef}>
+              {options.map(({ value, label }) => (
+                <option value={value} key={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </div>
+        ))}
+      </div>
+
+      <Button>Find Events</Button>
+    </form>
+  );
+};
 
 export default memo(EventsSearch);

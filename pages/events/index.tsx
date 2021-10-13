@@ -1,13 +1,21 @@
-import EventList from "components/events/EventList";
-import EventsSearch from "components/events/EventsSearch";
-import { getAllEvents } from "data";
+import { getAllEvents } from 'data';
+import { useCallback } from 'react';
+import { useRouter } from 'next/router';
+import EventList from 'components/events/EventList';
+import EventsSearch from 'components/events/EventsSearch';
 
 const AllEventsPage = () => {
   const events = getAllEvents();
 
+  const router = useRouter();
+
+  const findEventsHandler = useCallback((year, month) => {
+    router.push(`/events/${year}/${month}`);
+  }, []);
+
   return (
     <>
-      <EventsSearch />
+      <EventsSearch onSearch={findEventsHandler} />
       <EventList items={events} />
     </>
   );
