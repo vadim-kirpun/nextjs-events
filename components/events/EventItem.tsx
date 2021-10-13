@@ -4,7 +4,7 @@ import DateIcon from "icons/DateIcon";
 import AddressIcon from "icons/AddressIcon";
 import ArrowRightIcon from "icons/ArrowRightIcon";
 import { formatDate, formatAddress } from "helpers";
-import Button from "ui/Button";
+import Button from "ui/button";
 import styles from "./event-item.module.css";
 
 interface EventItemProps {
@@ -39,7 +39,7 @@ const EventItem = (props: EventItemProps) => {
         </div>
 
         <div className={styles.actions}>
-          <Button href={exploreLink}>
+          <Button link={exploreLink}>
             <span>Explore Event</span>
 
             <span className={styles.icon}>
