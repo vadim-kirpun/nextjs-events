@@ -4,7 +4,7 @@ import DateIcon from "icons/DateIcon";
 import AddressIcon from "icons/AddressIcon";
 import ArrowRightIcon from "icons/ArrowRightIcon";
 import { formatDate, formatAddress } from "helpers";
-import Button from "ui/button";
+import Button from "ui/Button";
 import styles from "./event-item.module.css";
 
 interface EventItemProps {
