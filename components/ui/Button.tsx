@@ -1,6 +1,6 @@
 import React, { memo, PropsWithChildren } from "react";
 import Link from "next/link";
-import styles from "./button.module.css";
+import styles from "./styles/button.module.css";
 
 type ButtonProps = PropsWithChildren<{
   link?: string;

@@ -57,15 +57,13 @@ export function getAllEvents(): Event[] {
 export function getFilteredEvents(dateFilter: DateFilter): Event[] {
   const { year, month } = dateFilter;
 
-  let filteredEvents = DUMMY_EVENTS.filter((event) => {
+  return DUMMY_EVENTS.filter((event) => {
     const eventDate = new Date(event.date);
 
     return (
       eventDate.getFullYear() === year && eventDate.getMonth() === month - 1
     );
   });
-
-  return filteredEvents;
 }
 
 export function getEventById(id: string): Event | undefined {
