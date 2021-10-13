@@ -3,7 +3,7 @@ import AddressIcon from "icons/address-icon";
 import DateIcon from "icons/date-icon";
 import type { Event } from "data";
 import { formatAddress, formatDate } from "helpers";
-import LogisticsItem from "./logistics-item";
+import LogisticsItem from "./LogisticsItem";
 import styles from "./event-logistics.module.css";
 
 type EventLogisticsProps = Pick<Event, "date" | "image"> & {
