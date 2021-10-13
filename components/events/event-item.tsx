@@ -1,10 +1,10 @@
 import { memo } from "react";
-import type { Event } from "../../data";
-import Button from "../ui/button";
-import DateIcon from "../icons/date-icon";
-import AddressIcon from "../icons/address-icon";
-import ArrowRightIcon from "../icons/arrow-right-icon";
-import { formatDate, formatAddress } from "../../helpers";
+import type { Event } from "data";
+import DateIcon from "icons/date-icon";
+import AddressIcon from "icons/address-icon";
+import ArrowRightIcon from "icons/arrow-right-icon";
+import { formatDate, formatAddress } from "helpers";
+import Button from "ui/button";
 import styles from "./event-item.module.css";
 
 interface EventItemProps {

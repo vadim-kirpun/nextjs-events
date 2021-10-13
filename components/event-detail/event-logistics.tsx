@@ -1,8 +1,8 @@
 import { memo } from "react";
-import AddressIcon from "../icons/address-icon";
-import DateIcon from "../icons/date-icon";
-import type { Event } from "../../data";
-import { formatAddress, formatDate } from "../../helpers";
+import AddressIcon from "icons/address-icon";
+import DateIcon from "icons/date-icon";
+import type { Event } from "data";
+import { formatAddress, formatDate } from "helpers";
 import LogisticsItem from "./logistics-item";
 import styles from "./event-logistics.module.css";
 
