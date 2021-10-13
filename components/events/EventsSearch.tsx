@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Button from "ui/Button";
-import styles from "./events-search.module.css";
+import styles from "./styles/events-search.module.css";
 
 const inputs = [
   {

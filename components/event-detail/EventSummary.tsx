@@ -1,5 +1,5 @@
 import { memo } from "react";
-import styles from "./event-summary.module.css";
+import styles from "./styles/event-summary.module.css";
 
 type EventSummaryProps = {
   title: string;

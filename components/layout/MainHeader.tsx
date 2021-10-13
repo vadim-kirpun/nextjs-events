@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { memo } from "react";
-import styles from "./main-header.module.css";
+import styles from "./styles/main-header.module.css";
 
 const MainHeader = () => (
   <header className={styles.header}>
