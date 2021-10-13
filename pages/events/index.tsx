@@ -1,7 +1,14 @@
-const AllEventsPage = () => (
-  <div>
-    <h1>All events</h1>
-  </div>
-);
+import EventList from "components/events/EventList";
+import { getAllEvents } from "data";
+
+const AllEventsPage = () => {
+  const events = getAllEvents();
+
+  return (
+    <div>
+      <EventList items={events} />
+    </div>
+  );
+};
 
 export default AllEventsPage;
