@@ -1,6 +1,6 @@
 import { memo } from "react";
-import AddressIcon from "icons/address-icon";
-import DateIcon from "icons/date-icon";
+import AddressIcon from "icons/AddressIcon";
+import DateIcon from "icons/DateIcon";
 import type { Event } from "data";
 import { formatAddress, formatDate } from "helpers";
 import LogisticsItem from "./LogisticsItem";
