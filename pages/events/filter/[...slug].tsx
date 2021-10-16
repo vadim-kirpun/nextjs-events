@@ -1,28 +1,23 @@
-import { useRouter } from 'next/router';
-import { getFilteredEvents } from 'data';
-import { EventList, ResultsTitle, ErrorAlert, Button } from 'components';
+import { getFilteredEvents } from 'helpers/api-util';
+import { Button, ErrorAlert, EventList, ResultsTitle } from 'components';
+import type { Event } from 'types/event';
+import { DateFilter } from 'types/date';
 
-const FilteredEventsPage = () => {
-  const router = useRouter();
-  const filterData = router.query.slug;
+interface Success {
+  filteredEvents: Event[];
+  dateFilter: DateFilter;
+}
 
-  if (!filterData) {
-    return <p className='center'>Loading...</p>;
-  }
+interface Fail {
+  hasError: boolean;
+}
 
-  const [year, month] = filterData as string[];
+type Props = Success | Fail;
 
-  const numYear = Number(year);
-  const numMonth = Number(month);
+const isError = (props: Props): props is Fail => 'hasError' in props;
 
-  if (
-    isNaN(numYear) ||
-    isNaN(numMonth) ||
-    numYear > 2030 ||
-    numYear < 2021 ||
-    numMonth > 12 ||
-    numMonth < 1
-  ) {
+const FilteredEventsPage = (props: Props) => {
+  if (isError(props)) {
     return (
       <div className='center'>
         <ErrorAlert>
@@ -34,7 +29,7 @@ const FilteredEventsPage = () => {
     );
   }
 
-  const filteredEvents = getFilteredEvents({ year: numYear, month: numMonth });
+  const { filteredEvents, dateFilter } = props;
 
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
@@ -48,7 +43,8 @@ const FilteredEventsPage = () => {
     );
   }
 
-  const date = new Date(numYear, numMonth - 1);
+  const { year, month } = dateFilter;
+  const date = new Date(year, month - 1);
 
   return (
     <>
@@ -59,3 +55,43 @@ const FilteredEventsPage = () => {
 };
 
 export default FilteredEventsPage;
+
+/**
+ * Here is no way to use SSG here because of 'year' and 'month' params,
+ * which are dynamic. Instead, SSR can be used.
+ */
+interface Params {
+  params: { slug: string[] };
+}
+
+export const getServerSideProps = async ({ params }: Params) => {
+  const [year, month] = params.slug;
+
+  const numYear = Number(year);
+  const numMonth = Number(month);
+
+  const hasError =
+    isNaN(numYear) ||
+    isNaN(numMonth) ||
+    numYear > 2030 ||
+    numYear < 2021 ||
+    numMonth > 12 ||
+    numMonth < 1;
+
+  if (hasError) return { props: { hasError } };
+
+  const filteredEvents = await getFilteredEvents({
+    year: numYear,
+    month: numMonth,
+  });
+
+  return {
+    props: {
+      dateFilter: {
+        year: numYear,
+        month: numMonth,
+      },
+      filteredEvents,
+    },
+  };
+};
