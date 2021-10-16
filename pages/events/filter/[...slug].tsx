@@ -8,7 +8,6 @@ import {
 } from 'components';
 import type { Event } from 'types/event';
 import { DateFilter } from 'types/date';
-import Head from 'next/head';
 
 interface Success {
   filteredEvents: Event[];
