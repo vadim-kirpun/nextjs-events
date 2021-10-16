@@ -1,6 +1,7 @@
 import { memo, useCallback, useRef } from 'react';
-import Button from 'ui/Button';
+import Button from '../ui/Button';
 import styles from './styles/events-search.module.css';
+import { useRouter } from 'next/router';
 
 const inputs = [
   {
@@ -31,11 +32,13 @@ const inputs = [
   },
 ];
 
-type Props = {
-  onSearch: (year: string, month: string) => void;
-};
+const EventsSearch = () => {
+  const router = useRouter();
 
-const EventsSearch = (props: Props) => {
+  const findEvents = useCallback((year: string, month: string) => {
+    router.push(`/events/filter/${year}/${month}`);
+  }, []);
+
   const yearRef = useRef<HTMLSelectElement>(null);
   const monthRef = useRef<HTMLSelectElement>(null);
 
@@ -46,7 +49,7 @@ const EventsSearch = (props: Props) => {
       const selectedYear = yearRef.current.value;
       const selectedMonth = monthRef.current.value;
 
-      props.onSearch(selectedYear, selectedMonth);
+      findEvents(selectedYear, selectedMonth);
     }
   }, []);
 

@@ -1,23 +1,21 @@
-import { getAllEvents } from 'data';
-import { useCallback } from 'react';
-import { useRouter } from 'next/router';
 import { EventList, EventsSearch } from 'components';
+import { getAllEvents } from 'helpers/api-util';
+import type { Event } from 'types/event';
 
-const AllEventsPage = () => {
-  const events = getAllEvents();
+type Props = { events: Event[] };
 
-  const router = useRouter();
-
-  const findEventsHandler = useCallback((year, month) => {
-    router.push(`/events/filter/${year}/${month}`);
-  }, []);
-
-  return (
-    <>
-      <EventsSearch onSearch={findEventsHandler} />
-      <EventList items={events} />
-    </>
-  );
-};
+const AllEventsPage = ({ events }: Props) => (
+  <>
+    <EventsSearch />
+    <EventList items={events} />
+  </>
+);
 
 export default AllEventsPage;
+
+export const getStaticProps = async () => ({
+  props: {
+    events: await getAllEvents(),
+  },
+  revalidate: 60,
+});

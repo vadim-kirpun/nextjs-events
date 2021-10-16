@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import Button from 'ui/Button';
+import Button from '../ui/Button';
 import classes from './styles/results-title.module.css';
 
 type Props = { date: Date };
