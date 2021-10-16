@@ -16,7 +16,6 @@
     "jsx": "preserve",
     "paths": {
       "icons/*": ["components/icons/*"],
-      "ui/*": ["components/ui/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

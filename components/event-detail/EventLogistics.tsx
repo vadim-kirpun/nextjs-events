@@ -1,9 +1,9 @@
 import { memo } from 'react';
+import { formatAddress, formatDate } from 'helpers';
 import AddressIcon from 'icons/AddressIcon';
 import DateIcon from 'icons/DateIcon';
-import { formatAddress, formatDate } from 'helpers';
-import LogisticsItem from './LogisticsItem';
 import styles from './styles/event-logistics.module.css';
+import LogisticsItem from './LogisticsItem';
 import { Event } from 'types/event';
 
 type Props = Pick<Event, 'date' | 'image'> & {

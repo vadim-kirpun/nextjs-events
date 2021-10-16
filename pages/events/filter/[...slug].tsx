@@ -1,9 +1,6 @@
 import { useRouter } from 'next/router';
 import { getFilteredEvents } from 'data';
-import EventList from 'components/events/EventList';
-import ResultsTitle from 'components/events/ResultsTitle';
-import ErrorAlert from 'ui/ErrorAlert';
-import Button from 'ui/Button';
+import { EventList, ResultsTitle, ErrorAlert, Button } from 'components';
 
 const FilteredEventsPage = () => {
   const router = useRouter();

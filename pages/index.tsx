@@ -1,6 +1,6 @@
 import { InferGetStaticPropsType } from 'next';
-import EventList from 'components/events/EventList';
 import { getFeaturedEvents } from 'helpers/api-util';
+import { EventList } from 'components';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 

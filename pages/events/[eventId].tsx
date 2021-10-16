@@ -1,6 +1,4 @@
-import EventSummary from 'components/event-detail/EventSummary';
-import EventLogistics from 'components/event-detail/EventLogistics';
-import EventContent from 'components/event-detail/EventContent';
+import { EventSummary, EventLogistics, EventContent } from 'components';
 import { getEventById, getFeaturedEvents } from 'helpers/api-util';
 import { Event } from 'types/event';
 
