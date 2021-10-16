@@ -1,4 +1,5 @@
-import type { DateFilter, Event } from './types';
+import { Event } from './types/event';
+import { DateFilter } from './types/date';
 
 const DUMMY_EVENTS = [
   {

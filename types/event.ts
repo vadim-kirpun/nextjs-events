@@ -14,8 +14,3 @@ export interface Event extends EventWithoutId {
 export interface EventsData {
   [index: string]: EventWithoutId;
 }
-
-export interface DateFilter {
-  year: number;
-  month: number;
-}

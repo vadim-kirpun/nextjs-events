@@ -1,6 +1,6 @@
 import axios from 'axios';
 import config from 'config.json';
-import type { Event, EventsData } from 'types';
+import { Event, EventsData } from 'types/event';
 
 export const getAllEvents = async (): Promise<Event[]> => {
   try {

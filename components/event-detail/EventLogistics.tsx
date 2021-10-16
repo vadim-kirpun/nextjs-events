@@ -4,7 +4,7 @@ import DateIcon from 'icons/DateIcon';
 import { formatAddress, formatDate } from 'helpers';
 import LogisticsItem from './LogisticsItem';
 import styles from './styles/event-logistics.module.css';
-import type { Event } from 'types';
+import { Event } from 'types/event';
 
 type EventLogisticsProps = Pick<Event, 'date' | 'image'> & {
   imageAlt: string;

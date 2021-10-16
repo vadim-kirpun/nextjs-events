@@ -4,7 +4,7 @@ import EventSummary from 'components/event-detail/EventSummary';
 import EventLogistics from 'components/event-detail/EventLogistics';
 import EventContent from 'components/event-detail/EventContent';
 import { getAllEvents, getEventById } from 'helpers/api-util';
-import type { Event } from 'types';
+import { Event } from 'types/event';
 
 type EventDetailsPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
