@@ -10,7 +10,7 @@ const AllEventsPage = () => {
   const router = useRouter();
 
   const findEventsHandler = useCallback((year, month) => {
-    router.push(`/events/${year}/${month}`);
+    router.push(`/events/filter/${year}/${month}`);
   }, []);
 
   return (

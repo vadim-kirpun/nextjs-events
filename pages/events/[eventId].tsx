@@ -4,9 +4,7 @@ import EventContent from 'components/event-detail/EventContent';
 import { getAllEvents, getEventById } from 'helpers/api-util';
 import { Event } from 'types/event';
 
-type Props = {
-  event: Event;
-};
+type Props = { event: Event };
 
 const EventDetailsPage = ({ event }: Props) => (
   <>
@@ -28,14 +26,6 @@ const EventDetailsPage = ({ event }: Props) => (
 export default EventDetailsPage;
 
 // This page is open and should be available for web-crawlers.
-export const getStaticPaths = async () => {
-  const allEvents = await getAllEvents();
-  return {
-    paths: allEvents.map((event) => ({ params: { eventId: event.id } })),
-    fallback: false,
-  };
-};
-
 type Params = {
   params: {
     eventId: string;
@@ -43,10 +33,15 @@ type Params = {
 };
 
 export const getStaticProps = async ({ params }: Params) => {
-  const eventId = params.eventId;
-  const event = await getEventById(eventId);
+  const event = await getEventById(params.eventId);
 
   if (!event) return { notFound: true };
-
   return { props: { event } };
+};
+
+export const getStaticPaths = async () => {
+  const allEvents = await getAllEvents();
+  const paths = allEvents.map((event) => ({ params: { eventId: event.id } }));
+
+  return { paths, fallback: false };
 };
