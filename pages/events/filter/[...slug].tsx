@@ -2,6 +2,7 @@ import { getFilteredEvents } from 'helpers/api-util';
 import { Button, ErrorAlert, EventList, ResultsTitle } from 'components';
 import type { Event } from 'types/event';
 import { DateFilter } from 'types/date';
+import Head from 'next/head';
 
 interface Success {
   filteredEvents: Event[];
@@ -17,9 +18,17 @@ type Props = Success | Fail;
 const isError = (props: Props): props is Fail => 'hasError' in props;
 
 const FilteredEventsPage = (props: Props) => {
+  const title = (
+    <Head>
+      <title>Filtered Events</title>
+    </Head>
+  );
+
   if (isError(props)) {
     return (
       <div className='center'>
+        {title}
+
         <ErrorAlert>
           <p>Invalid filter. Please adjust your values!</p>
         </ErrorAlert>
@@ -34,6 +43,8 @@ const FilteredEventsPage = (props: Props) => {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <div className='center'>
+        {title}
+
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
@@ -48,6 +59,7 @@ const FilteredEventsPage = (props: Props) => {
 
   return (
     <>
+      {title}
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </>

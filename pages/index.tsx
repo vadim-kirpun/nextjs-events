@@ -1,11 +1,16 @@
 import { InferGetStaticPropsType } from 'next';
 import { getFeaturedEvents } from 'helpers/api-util';
 import { EventList } from 'components';
+import Head from 'next/head';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const HomePage = ({ featuredEvents }: Props) => (
   <div>
+    <Head>
+      <title>NextJS Events</title>
+    </Head>
+
     <EventList items={featuredEvents} />
   </div>
 );
