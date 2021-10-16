@@ -14,3 +14,8 @@ export const getAllEvents = async (): Promise<Event[]> => {
     return [];
   }
 };
+
+export const getEventById = async (id: string): Promise<Event | undefined> => {
+  const allEvents = await getAllEvents();
+  return allEvents.find((event) => event.id === id);
+};

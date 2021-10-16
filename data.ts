@@ -48,7 +48,3 @@ export function getFilteredEvents(dateFilter: DateFilter): Event[] {
     );
   });
 }
-
-export function getEventById(id: string): Event | undefined {
-  return DUMMY_EVENTS.find((event) => event.id === id);
-}
