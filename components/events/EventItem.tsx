@@ -1,11 +1,11 @@
-import { memo } from "react";
-import type { Event } from "data";
-import DateIcon from "icons/DateIcon";
-import AddressIcon from "icons/AddressIcon";
-import ArrowRightIcon from "icons/ArrowRightIcon";
-import { formatDate, formatAddress } from "helpers";
-import Button from "ui/Button";
-import styles from "./styles/event-item.module.css";
+import { memo } from 'react';
+import type { Event } from 'data';
+import DateIcon from 'icons/DateIcon';
+import AddressIcon from 'icons/AddressIcon';
+import ArrowRightIcon from 'icons/ArrowRightIcon';
+import { formatDate, formatAddress } from 'helpers';
+import Button from 'ui/Button';
+import styles from './styles/event-item.module.css';
 
 interface EventItemProps {
   data: Event;
@@ -21,7 +21,7 @@ const EventItem = (props: EventItemProps) => {
 
   return (
     <li className={styles.item}>
-      <img src={`/${image}`} alt="event-image" />
+      <img src={`/${image}`} alt='event-image' />
 
       <div className={styles.content}>
         <div className={styles.summary}>

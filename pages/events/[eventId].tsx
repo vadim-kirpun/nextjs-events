@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
-import { getEventById } from "data";
-import EventSummary from "components/event-detail/EventSummary";
-import EventLogistics from "components/event-detail/EventLogistics";
-import EventContent from "components/event-detail/EventContent";
-import ErrorAlert from "ui/ErrorAlert";
+import { useRouter } from 'next/router';
+import { getEventById } from 'data';
+import EventSummary from 'components/event-detail/EventSummary';
+import EventLogistics from 'components/event-detail/EventLogistics';
+import EventContent from 'components/event-detail/EventContent';
+import ErrorAlert from 'ui/ErrorAlert';
 
 const EventDetailsPage = () => {
   const router = useRouter();

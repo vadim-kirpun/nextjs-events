@@ -1,6 +1,6 @@
-import { memo } from "react";
-import Button from "ui/Button";
-import classes from "./styles/results-title.module.css";
+import { memo } from 'react';
+import Button from 'ui/Button';
+import classes from './styles/results-title.module.css';
 
 type ResultsTitleProps = {
   date: Date;
@@ -9,15 +9,15 @@ type ResultsTitleProps = {
 const ResultsTitle = (props: ResultsTitleProps) => {
   const { date } = props;
 
-  const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
+  const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
   });
 
   return (
     <section className={classes.title}>
       <h1>Events in {humanReadableDate}</h1>
-      <Button link="/events">Show all events</Button>
+      <Button link='/events'>Show all events</Button>
     </section>
   );
 };

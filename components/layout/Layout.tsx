@@ -1,5 +1,5 @@
-import { memo, PropsWithChildren } from "react";
-import MainHeader from "./MainHeader";
+import { memo, PropsWithChildren } from 'react';
+import MainHeader from './MainHeader';
 
 const Layout = (props: PropsWithChildren<{}>) => (
   <>
