@@ -1,10 +1,10 @@
 import { memo } from 'react';
 import AddressIcon from 'icons/AddressIcon';
 import DateIcon from 'icons/DateIcon';
-import type { Event } from 'data';
 import { formatAddress, formatDate } from 'helpers';
 import LogisticsItem from './LogisticsItem';
 import styles from './styles/event-logistics.module.css';
+import type { Event } from 'types';
 
 type EventLogisticsProps = Pick<Event, 'date' | 'image'> & {
   imageAlt: string;

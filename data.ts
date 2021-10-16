@@ -1,17 +1,4 @@
-export interface Event {
-  id: string;
-  title: string;
-  description: string;
-  location: string;
-  date: string;
-  image: string;
-  isFeatured: boolean;
-}
-
-interface DateFilter {
-  year: number;
-  month: number;
-}
+import type { DateFilter, Event } from './types';
 
 const DUMMY_EVENTS = [
   {
@@ -19,7 +6,7 @@ const DUMMY_EVENTS = [
     title: 'Programming for everyone',
     description:
       'Everyone can learn to code! Yes, everyone! In this live event, we are going to go through all the key basics and get you started with programming as well.',
-    location: 'Somestreet 25, 12345 San Somewhereo',
+    location: 'Somestreet 25, 12345 San Somewhere',
     date: '2021-05-12',
     image: 'images/coding-event.jpg',
     isFeatured: false,
@@ -45,10 +32,6 @@ const DUMMY_EVENTS = [
     isFeatured: true,
   },
 ];
-
-export function getFeaturedEvents(): Event[] {
-  return DUMMY_EVENTS.filter((event) => event.isFeatured);
-}
 
 export function getAllEvents(): Event[] {
   return DUMMY_EVENTS;

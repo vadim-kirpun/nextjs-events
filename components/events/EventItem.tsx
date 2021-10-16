@@ -1,11 +1,11 @@
 import { memo } from 'react';
-import type { Event } from 'data';
 import DateIcon from 'icons/DateIcon';
 import AddressIcon from 'icons/AddressIcon';
 import ArrowRightIcon from 'icons/ArrowRightIcon';
 import { formatDate, formatAddress } from 'helpers';
 import Button from 'ui/Button';
 import styles from './styles/event-item.module.css';
+import { Event } from 'types';
 
 interface EventItemProps {
   data: Event;
