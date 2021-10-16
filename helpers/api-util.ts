@@ -15,7 +15,8 @@ export const getAllEvents = async (): Promise<Event[]> => {
   }
 };
 
-export const getEventById = async (id: string): Promise<Event | undefined> => {
-  const allEvents = await getAllEvents();
-  return allEvents.find((event) => event.id === id);
-};
+export const getFeaturedEvents = async () =>
+  (await getAllEvents()).filter((event) => event.isFeatured);
+
+export const getEventById = async (id: string): Promise<Event | undefined> =>
+  (await getAllEvents()).find((event) => event.id === id);

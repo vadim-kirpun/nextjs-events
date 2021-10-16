@@ -1,6 +1,6 @@
 import { InferGetStaticPropsType } from 'next';
 import EventList from 'components/events/EventList';
-import { getAllEvents } from 'helpers/api-util';
+import { getFeaturedEvents } from 'helpers/api-util';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -17,14 +17,11 @@ export default HomePage;
  * So it would be good to prerender it for web-crawlers and SEO.
  *
  * List of events is not changing frequently,
- * so revalidate it every 60 seconds is enough.
+ * so revalidate it every half an hour is enough.
  */
-export const getStaticProps = async () => {
-  const allEvents = await getAllEvents();
-  const featuredEvents = allEvents.filter((event) => event.isFeatured);
-
-  return {
-    props: { featuredEvents },
-    revalidate: 60,
-  };
-};
+export const getStaticProps = async () => ({
+  props: {
+    featuredEvents: await getFeaturedEvents(),
+  },
+  revalidate: 1800,
+});

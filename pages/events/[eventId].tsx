@@ -1,7 +1,7 @@
 import EventSummary from 'components/event-detail/EventSummary';
 import EventLogistics from 'components/event-detail/EventLogistics';
 import EventContent from 'components/event-detail/EventContent';
-import { getAllEvents, getEventById } from 'helpers/api-util';
+import { getEventById, getFeaturedEvents } from 'helpers/api-util';
 import { Event } from 'types/event';
 
 type Props = { event: Event };
@@ -26,6 +26,7 @@ const EventDetailsPage = ({ event }: Props) => (
 export default EventDetailsPage;
 
 // This page is open and should be available for web-crawlers.
+// Event data more important than events list, hence it will be updated every 30 seconds.
 type Params = {
   params: {
     eventId: string;
@@ -36,12 +37,26 @@ export const getStaticProps = async ({ params }: Params) => {
   const event = await getEventById(params.eventId);
 
   if (!event) return { notFound: true };
-  return { props: { event } };
+
+  return {
+    props: { event },
+    revalidate: 30,
+  };
 };
 
+/**
+ * Since we don't need to pre-render huge amount of pages,
+ * it would be good to pre-render only featured events represented on index page.
+ * For others fallback will work.
+ */
 export const getStaticPaths = async () => {
-  const allEvents = await getAllEvents();
-  const paths = allEvents.map((event) => ({ params: { eventId: event.id } }));
+  const featuredEvents = await getFeaturedEvents();
+  const paths = featuredEvents.map((event) => ({
+    params: { eventId: event.id },
+  }));
 
-  return { paths, fallback: false };
+  return {
+    paths,
+    fallback: 'blocking',
+  };
 };
