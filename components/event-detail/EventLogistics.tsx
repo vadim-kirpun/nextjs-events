@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import Image from 'next/image';
 import { formatAddress, formatDate } from 'helpers';
 import AddressIcon from 'icons/AddressIcon';
 import DateIcon from 'icons/DateIcon';
@@ -20,7 +21,7 @@ const EventLogistics = (props: Props) => {
   return (
     <section className={styles.logistics}>
       <div className={styles.image}>
-        <img src={`/${image}`} alt={imageAlt} />
+        <Image src={`/${image}`} alt={imageAlt} width={400} height={400} />
       </div>
 
       <ul className={styles.list}>

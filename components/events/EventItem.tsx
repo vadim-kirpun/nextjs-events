@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import Image from 'next/image';
 import DateIcon from 'icons/DateIcon';
 import AddressIcon from 'icons/AddressIcon';
 import ArrowRightIcon from 'icons/ArrowRightIcon';
@@ -19,7 +20,7 @@ const EventItem = (props: Props) => {
 
   return (
     <li className={styles.item}>
-      <img src={`/${image}`} alt='event-image' />
+      <Image src={`/${image}`} alt='event-image' width={360} height={240} />
 
       <div className={styles.content}>
         <div className={styles.summary}>
