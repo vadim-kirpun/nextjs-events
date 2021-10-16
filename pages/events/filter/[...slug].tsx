@@ -59,6 +59,9 @@ export default FilteredEventsPage;
 /**
  * Here is no way to use SSG here because of 'year' and 'month' params,
  * which are dynamic. Instead, SSR can be used.
+ *
+ * The second approach may be even better and faster -
+ * client side fetching using SWR for example.
  */
 interface Params {
   params: { slug: string[] };
