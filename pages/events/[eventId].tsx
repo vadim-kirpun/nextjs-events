@@ -1,11 +1,18 @@
-import { EventSummary, EventLogistics, EventContent } from 'components';
-import { getEventById, getFeaturedEvents } from 'helpers/api-util';
+import {
+  PageTitle,
+  EventContent,
+  EventSummary,
+  EventLogistics,
+} from 'components';
 import { Event } from 'types/event';
+import { getEventById, getFeaturedEvents } from 'helpers/api-util';
 
 type Props = { event: Event };
 
 const EventDetailsPage = ({ event }: Props) => (
   <>
+    <PageTitle>Event - {event.title}</PageTitle>
+
     <EventSummary title={event.title} />
 
     <EventLogistics

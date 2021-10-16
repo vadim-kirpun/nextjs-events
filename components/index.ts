@@ -10,6 +10,7 @@ export { default as ResultsTitle } from './events/ResultsTitle';
 
 // layout
 export { default as Layout } from './layout/Layout';
+export { default as PageTitle } from './layout/PageTitle';
 
 // ui
 export { default as Button } from './ui/Button';
