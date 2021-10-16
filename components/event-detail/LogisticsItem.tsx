@@ -1,11 +1,9 @@
 import React, { memo, PropsWithChildren } from 'react';
 import styles from './styles/logistics-item.module.css';
 
-type LogisticsItemProps = PropsWithChildren<{
-  icon: React.ComponentType;
-}>;
+type Props = PropsWithChildren<{ icon: React.ComponentType }>;
 
-const LogisticsItem = (props: LogisticsItemProps) => {
+const LogisticsItem = (props: Props) => {
   const { icon: Icon } = props;
 
   return (

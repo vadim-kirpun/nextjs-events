@@ -2,11 +2,9 @@ import { memo } from 'react';
 import Button from 'ui/Button';
 import classes from './styles/results-title.module.css';
 
-type ResultsTitleProps = {
-  date: Date;
-};
+type Props = { date: Date };
 
-const ResultsTitle = (props: ResultsTitleProps) => {
+const ResultsTitle = (props: Props) => {
   const { date } = props;
 
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {

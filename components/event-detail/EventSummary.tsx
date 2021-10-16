@@ -1,11 +1,9 @@
 import { memo } from 'react';
 import styles from './styles/event-summary.module.css';
 
-type EventSummaryProps = {
-  title: string;
-};
+type Props = { title: string };
 
-const EventSummary = ({ title }: EventSummaryProps) => (
+const EventSummary = ({ title }: Props) => (
   <section className={styles.summary}>
     <h1>{title}</h1>
   </section>

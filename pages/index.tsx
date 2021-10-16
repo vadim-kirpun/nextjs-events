@@ -2,9 +2,9 @@ import { InferGetStaticPropsType } from 'next';
 import EventList from 'components/events/EventList';
 import { getAllEvents } from 'helpers/api-util';
 
-type HomePageProps = InferGetStaticPropsType<typeof getStaticProps>;
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const HomePage = ({ featuredEvents }: HomePageProps) => (
+const HomePage = ({ featuredEvents }: Props) => (
   <div>
     <EventList items={featuredEvents} />
   </div>

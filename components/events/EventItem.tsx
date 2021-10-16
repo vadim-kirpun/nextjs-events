@@ -7,11 +7,9 @@ import Button from 'ui/Button';
 import styles from './styles/event-item.module.css';
 import { Event } from 'types/event';
 
-interface EventItemProps {
-  data: Event;
-}
+type Props = { data: Event };
 
-const EventItem = (props: EventItemProps) => {
+const EventItem = (props: Props) => {
   const { id, title, image, date, location } = props.data;
 
   const humanReadableDate = formatDate(date);

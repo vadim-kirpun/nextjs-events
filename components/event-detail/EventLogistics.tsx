@@ -6,12 +6,12 @@ import LogisticsItem from './LogisticsItem';
 import styles from './styles/event-logistics.module.css';
 import { Event } from 'types/event';
 
-type EventLogisticsProps = Pick<Event, 'date' | 'image'> & {
+type Props = Pick<Event, 'date' | 'image'> & {
   imageAlt: string;
   address: string;
 };
 
-const EventLogistics = (props: EventLogisticsProps) => {
+const EventLogistics = (props: Props) => {
   const { date, address, image, imageAlt } = props;
 
   const humanReadableDate = formatDate(date);

@@ -3,11 +3,9 @@ import EventItem from './EventItem';
 import styles from './styles/event-list.module.css';
 import { Event } from 'types/event';
 
-interface EventListProps {
-  items: Event[];
-}
+type Props = { items: Event[] };
 
-const EventList = (props: EventListProps) => {
+const EventList = (props: Props) => {
   const { items = [] } = props;
 
   return (

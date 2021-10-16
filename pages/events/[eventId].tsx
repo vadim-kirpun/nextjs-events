@@ -1,14 +1,14 @@
-import { ParsedUrlQuery } from 'querystring';
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import EventSummary from 'components/event-detail/EventSummary';
 import EventLogistics from 'components/event-detail/EventLogistics';
 import EventContent from 'components/event-detail/EventContent';
 import { getAllEvents, getEventById } from 'helpers/api-util';
 import { Event } from 'types/event';
 
-type EventDetailsPageProps = InferGetStaticPropsType<typeof getStaticProps>;
+type Props = {
+  event: Event;
+};
 
-const EventDetailsPage = ({ event }: EventDetailsPageProps) => (
+const EventDetailsPage = ({ event }: Props) => (
   <>
     <EventSummary title={event.title} />
 
@@ -27,10 +27,8 @@ const EventDetailsPage = ({ event }: EventDetailsPageProps) => (
 
 export default EventDetailsPage;
 
-/**
- * This page is open and should be available for web-crawlers.
- */
-export const getStaticPaths: GetStaticPaths = async () => {
+// This page is open and should be available for web-crawlers.
+export const getStaticPaths = async () => {
   const allEvents = await getAllEvents();
   return {
     paths: allEvents.map((event) => ({ params: { eventId: event.id } })),
@@ -38,19 +36,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-interface StaticPathParams extends ParsedUrlQuery {
-  eventId: string;
-}
-
-type EventDetailsProps = {
-  event: Event;
+type Params = {
+  params: {
+    eventId: string;
+  };
 };
 
-export const getStaticProps: GetStaticProps<
-  EventDetailsProps,
-  StaticPathParams
-> = async (context) => {
-  const eventId = context.params!.eventId;
+export const getStaticProps = async ({ params }: Params) => {
+  const eventId = params.eventId;
   const event = await getEventById(eventId);
 
   if (!event) return { notFound: true };

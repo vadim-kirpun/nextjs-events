@@ -2,12 +2,12 @@ import React, { memo, PropsWithChildren } from 'react';
 import Link from 'next/link';
 import styles from './styles/button.module.css';
 
-type ButtonProps = PropsWithChildren<{
+type Props = PropsWithChildren<{
   link?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }>;
 
-const Button = (props: ButtonProps) => {
+const Button = (props: Props) => {
   if (props.link) {
     return (
       <Link href={props.link}>

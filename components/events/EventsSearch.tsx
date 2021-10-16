@@ -31,11 +31,11 @@ const inputs = [
   },
 ];
 
-type EventSearchProps = {
+type Props = {
   onSearch: (year: string, month: string) => void;
 };
 
-const EventsSearch = (props: EventSearchProps) => {
+const EventsSearch = (props: Props) => {
   const yearRef = useRef<HTMLSelectElement>(null);
   const monthRef = useRef<HTMLSelectElement>(null);
 
