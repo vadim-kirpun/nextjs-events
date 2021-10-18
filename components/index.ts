@@ -15,3 +15,7 @@ export { default as PageTitle } from './layout/PageTitle';
 // ui
 export { default as Button } from './ui/Button';
 export { default as ErrorAlert } from './ui/ErrorAlert';
+
+// input
+export { default as Comments } from './input/Comments';
+export { default as NewsletterRegistration } from './input/NewsletterRegistration';
