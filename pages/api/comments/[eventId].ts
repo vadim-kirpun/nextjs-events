@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { checkIfEmailEmpty, checkIfStringEmpty, connectToDB } from 'helpers';
-import type { CommentWithId } from 'types';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { eventId } = req.query;
@@ -8,9 +7,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { client, db } = await connectToDB();
 
   if (req.method === 'GET') {
-    const comments: CommentWithId[] = [
-      { id: '1', email: '1@3.df', name: 'Vadim', text: 'hello' },
-    ];
+    const documents = await db
+      .collection('comments')
+      .find()
+      .sort({ _id: -1 }) // sorting in descending order. So latest comment is the first one
+      .toArray();
+
+    const comments = documents.map((doc) => ({ ...doc, id: doc._id }));
+
     res.status(200).json(comments);
   }
 
@@ -26,18 +30,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return;
     }
 
-    const newComment: CommentWithId = {
-      id: new Date().toISOString(),
-      email,
-      name,
-      text,
-    };
+    const newComment = { email, name, text, eventId };
+
+    const { insertedId } = await db
+      .collection('comments')
+      .insertOne(newComment);
 
     res.status(201).json({
       message: 'Added comment.',
-      comment: newComment,
+      comment: {
+        id: insertedId,
+        ...newComment,
+      },
     });
   }
 
-  client.close();
+  await client.close();
 };
