@@ -1,10 +1,5 @@
-import { MongoClient } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { checkIfEmailEmpty } from '../../helpers/validation';
-
-const databaseName = 'nextjs-events';
-const credentials = `${process.env.DB_USER}:${process.env.DB_PASSWORD}`;
-const mongodbURL = `mongodb+srv://${credentials}@cluster0.nadat.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
+import { checkIfEmailEmpty, connectToDB } from 'helpers';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
@@ -15,9 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return;
     }
 
-    const client = await MongoClient.connect(mongodbURL);
-    const db = client.db();
-
+    const { client, db } = await connectToDB();
     await db.collection('emails').insertOne({ email });
     await client.close();
 

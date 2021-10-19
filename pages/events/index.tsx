@@ -1,5 +1,5 @@
 import { EventList, EventsSearch, PageTitle } from 'components';
-import { getAllEvents } from 'helpers/api-util';
+import { getAllEvents } from 'helpers';
 import type { Event } from 'types';
 
 type Props = { events: Event[] };

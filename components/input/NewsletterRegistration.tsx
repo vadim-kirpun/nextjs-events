@@ -1,6 +1,6 @@
 import { FormEvent, memo, useRef } from 'react';
 import axios from 'axios';
-import { handleError } from 'helpers/api-util';
+import { handleError } from 'helpers';
 import styles from './styles/newsletter-registration.module.css';
 
 type NewsletterResponse = {

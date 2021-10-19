@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { checkIfEmailEmpty, checkIfStringEmpty } from 'helpers/validation';
+import { checkIfEmailEmpty, checkIfStringEmpty, connectToDB } from 'helpers';
 import type { CommentWithId } from 'types';
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { eventId } = req.query;
+
+  const { client, db } = await connectToDB();
 
   if (req.method === 'GET') {
     const comments: CommentWithId[] = [
@@ -36,4 +38,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       comment: newComment,
     });
   }
+
+  client.close();
 };

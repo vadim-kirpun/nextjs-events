@@ -1,4 +1,3 @@
-import { getFilteredEvents } from 'helpers/api-util';
 import {
   Button,
   EventList,
@@ -6,6 +5,7 @@ import {
   ErrorAlert,
   ResultsTitle,
 } from 'components';
+import { getFilteredEvents } from 'helpers';
 import type { Event, DateFilter } from 'types';
 
 interface Success {

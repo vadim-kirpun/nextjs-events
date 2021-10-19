@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from 'react';
 import axios from 'axios';
 import type { Comment, CommentWithId } from 'types';
-import { handleError } from 'helpers/api-util';
+import { handleError } from 'helpers';
 import CommentList from './CommentList';
 import NewComment from './NewComment';
 import styles from './styles/comments.module.css';

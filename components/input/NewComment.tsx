@@ -1,5 +1,5 @@
 import { FormEvent, memo, useRef, useState } from 'react';
-import { checkIfEmailEmpty, checkIfStringEmpty } from 'helpers/validation';
+import { checkIfEmailEmpty, checkIfStringEmpty } from 'helpers';
 import type { Comment } from 'types';
 import styles from './styles/new-comment.module.css';
 

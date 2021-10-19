@@ -6,7 +6,7 @@ import {
   EventLogistics,
 } from 'components';
 import type { Event } from 'types';
-import { getEventById, getFeaturedEvents } from 'helpers/api-util';
+import { getEventById, getFeaturedEvents } from 'helpers';
 
 type Props = { event: Event };
 
