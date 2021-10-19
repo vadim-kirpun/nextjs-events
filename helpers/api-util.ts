@@ -1,7 +1,6 @@
 import axios from 'axios';
 import config from 'config.json';
-import { DateFilter } from 'types/date';
-import { Event, EventsData } from 'types/event';
+import type { ErrorResponse, DateFilter, Event, EventsData } from 'types';
 
 export const getAllEvents = async (): Promise<Event[]> => {
   try {
@@ -31,4 +30,10 @@ export const getFilteredEvents = async (dateFilter: DateFilter) => {
     const date = new Date(event.date);
     return date.getFullYear() === year && date.getMonth() === month - 1;
   });
+};
+
+export const handleError = (error: any) => {
+  if (axios.isAxiosError(error)) {
+    alert((error.response as ErrorResponse).data.message);
+  }
 };

@@ -1,13 +1,12 @@
 import { getFilteredEvents } from 'helpers/api-util';
 import {
   Button,
-  ErrorAlert,
   EventList,
   PageTitle,
+  ErrorAlert,
   ResultsTitle,
 } from 'components';
-import type { Event } from 'types/event';
-import { DateFilter } from 'types/date';
+import type { Event, DateFilter } from 'types';
 
 interface Success {
   filteredEvents: Event[];

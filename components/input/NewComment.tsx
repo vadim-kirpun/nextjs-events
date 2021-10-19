@@ -1,8 +1,10 @@
 import { FormEvent, memo, useRef, useState } from 'react';
+import { checkIfEmailEmpty, checkIfStringEmpty } from 'helpers/validation';
+import type { Comment } from 'types';
 import styles from './styles/new-comment.module.css';
 
 type Props = {
-  onAddComment: (data: { email: string; name: string; text: string }) => void;
+  onAddComment: (data: Comment) => void;
 };
 
 const NewComment = (props: Props) => {
@@ -19,14 +21,9 @@ const NewComment = (props: Props) => {
     const enteredName = nameInputRef?.current?.value;
     const enteredComment = commentInputRef?.current?.value;
 
-    const isEmailInvalid =
-      !enteredEmail ||
-      enteredEmail.trim() === '' ||
-      !enteredEmail.includes('@');
-
-    const isNameInvalid = !enteredName || enteredName.trim() === '';
-
-    const isCommentInvalid = !enteredComment || enteredComment.trim() === '';
+    const isEmailInvalid = checkIfEmailEmpty(enteredEmail);
+    const isNameInvalid = checkIfStringEmpty(enteredName);
+    const isCommentInvalid = checkIfStringEmpty(enteredComment);
 
     if (isEmailInvalid || isNameInvalid || isCommentInvalid) {
       setIsInvalid(true);

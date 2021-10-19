@@ -5,7 +5,7 @@ import AddressIcon from 'icons/AddressIcon';
 import ArrowRightIcon from 'icons/ArrowRightIcon';
 import { formatDate, formatAddress } from 'helpers';
 import styles from './styles/event-item.module.css';
-import { Event } from 'types/event';
+import type { Event } from 'types';
 import Button from '../ui/Button';
 
 type Props = { data: Event };

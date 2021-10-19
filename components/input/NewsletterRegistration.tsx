@@ -1,5 +1,6 @@
 import { FormEvent, memo, useRef } from 'react';
 import axios from 'axios';
+import { handleError } from 'helpers/api-util';
 import styles from './styles/newsletter-registration.module.css';
 
 type NewsletterResponse = {
@@ -19,9 +20,7 @@ const NewsletterRegistration = () => {
 
       alert(data.message);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        alert((error.response?.data as NewsletterResponse).message);
-      }
+      handleError(error);
     }
   };
 

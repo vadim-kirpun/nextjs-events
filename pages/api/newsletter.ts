@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-function handler(req: NextApiRequest, res: NextApiResponse) {
+export default (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { email } = req.body;
 
@@ -11,6 +11,4 @@ function handler(req: NextApiRequest, res: NextApiResponse) {
 
     res.status(201).json({ message: 'Signed up!' });
   }
-}
-
-export default handler;
+};
