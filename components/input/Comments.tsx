@@ -21,12 +21,13 @@ const Comments = ({ eventId }: Props) => {
 
   const apiRoute = `/api/comments/${eventId}`;
 
+  const fetchComments = async () => {
+    const { data } = await axios.get<CommentWithId[]>(apiRoute);
+    setComments(data);
+  };
+
   useEffect(() => {
-    if (showComments) {
-      axios.get<CommentWithId[]>(apiRoute).then(({ data }) => {
-        setComments(data);
-      });
-    }
+    if (showComments) fetchComments();
   }, [showComments]);
 
   const toggleCommentsHandler = () => {
