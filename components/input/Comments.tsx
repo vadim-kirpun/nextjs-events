@@ -22,8 +22,12 @@ const Comments = ({ eventId }: Props) => {
   const apiRoute = `/api/comments/${eventId}`;
 
   const fetchComments = async () => {
-    const { data } = await axios.get<CommentWithId[]>(apiRoute);
-    setComments(data);
+    try {
+      const { data } = await axios.get<CommentWithId[]>(apiRoute);
+      setComments(data);
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   useEffect(() => {
