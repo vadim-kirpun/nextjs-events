@@ -53,7 +53,7 @@ const NewComment = (props: Props) => {
 
       <div className={styles.control}>
         <label htmlFor='comment'>Your comment</label>
-        <textarea id='comment' rows={5} ref={commentInputRef}></textarea>
+        <textarea id='comment' rows={5} ref={commentInputRef} />
       </div>
 
       {isInvalid && <p>Please enter a valid email address and comment!</p>}

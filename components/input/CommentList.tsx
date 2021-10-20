@@ -1,6 +1,6 @@
 import { memo } from 'react';
+import type { CommentWithId } from 'types';
 import styles from './styles/comment-list.module.css';
-import { CommentWithId } from 'types';
 
 type Props = {
   items: CommentWithId[];

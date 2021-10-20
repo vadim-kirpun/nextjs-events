@@ -12,7 +12,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return;
     }
 
-    let client: MongoClient, db: Db;
+    let client: MongoClient;
+    let db: Db;
 
     try {
       ({ client, db } = await connectToDB());

@@ -6,7 +6,8 @@ import { connectToDB } from 'helpers/db';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { eventId } = req.query;
 
-  let client: MongoClient, db: Db;
+  let client: MongoClient;
+  let db: Db;
 
   try {
     ({ client, db } = await connectToDB());

@@ -3,9 +3,9 @@ import Image from 'next/image';
 import { formatAddress, formatDate } from 'helpers';
 import AddressIcon from 'icons/AddressIcon';
 import DateIcon from 'icons/DateIcon';
+import type { Event } from 'types';
 import styles from './styles/event-logistics.module.css';
 import LogisticsItem from './LogisticsItem';
-import type { Event } from 'types';
 
 type Props = Pick<Event, 'date' | 'image'> & {
   imageAlt: string;

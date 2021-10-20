@@ -1,7 +1,7 @@
 import { memo } from 'react';
+import type { Event } from 'types';
 import EventItem from './EventItem';
 import styles from './styles/event-list.module.css';
-import type { Event } from 'types';
 
 type Props = { items: Event[] };
 

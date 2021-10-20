@@ -1,7 +1,7 @@
 import { memo, useCallback, useRef } from 'react';
+import { useRouter } from 'next/router';
 import Button from '../ui/Button';
 import styles from './styles/events-search.module.css';
-import { useRouter } from 'next/router';
 
 const inputs = [
   {
