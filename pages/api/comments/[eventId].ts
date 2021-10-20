@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { checkIfEmailEmpty, checkIfStringEmpty, connectToDB } from 'helpers';
+import { checkIfEmailEmpty, checkIfStringEmpty } from 'helpers';
+import { connectToDB } from 'helpers/db';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { eventId } = req.query;
