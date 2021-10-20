@@ -4,9 +4,9 @@ import type { ErrorResponse, DateFilter, Event, EventsData } from 'types';
 
 export const getAllEvents = async (): Promise<Event[]> => {
   try {
-    const { data } = await axios.get(config.baseUrl);
+    const { data } = await axios.get<EventsData>(config.baseUrl);
 
-    return Object.entries(data as EventsData).map(([key, data]) => ({
+    return Object.entries(data).map(([key, data]) => ({
       id: key,
       ...data,
     }));
