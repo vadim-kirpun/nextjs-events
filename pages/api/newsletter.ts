@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       ({ client, db } = await connectToDB());
     } catch (error) {
-      res.status(500).json({ message: 'Connection to the database failed!' });
+      res.status(500).json({ message: 'Connecting to the database failed!' });
       return;
     }
 
