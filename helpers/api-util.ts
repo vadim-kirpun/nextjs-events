@@ -1,14 +1,16 @@
+import { useContext } from 'react';
 import axios from 'axios';
 import config from 'config.json';
+import { NotificationContext } from 'store';
 import type { ErrorResponse, DateFilter, Event, EventsData } from 'types';
 
 export const getAllEvents = async (): Promise<Event[]> => {
   try {
     const { data } = await axios.get<EventsData>(config.baseUrl);
 
-    return Object.entries(data).map(([key, data]) => ({
+    return Object.entries(data).map(([key, eventData]) => ({
       id: key,
-      ...data,
+      ...eventData,
     }));
   } catch (error) {
     return [];
@@ -32,8 +34,20 @@ export const getFilteredEvents = async (dateFilter: DateFilter) => {
   });
 };
 
-export const handleError = (error: any) => {
-  if (axios.isAxiosError(error)) {
-    alert((error.response as ErrorResponse).data.message);
-  }
+export const useHandleError = () => {
+  const { showNotification } = useContext(NotificationContext);
+
+  return (error: any) => {
+    if (axios.isAxiosError(error)) {
+      const message =
+        (error.response as ErrorResponse).data.message ??
+        'Something went wrong!';
+
+      showNotification({
+        title: 'Error!',
+        message,
+        status: 'error',
+      });
+    }
+  };
 };

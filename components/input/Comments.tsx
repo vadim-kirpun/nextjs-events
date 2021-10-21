@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from 'react';
+import { useHandleError } from 'helpers';
 import axios from 'axios';
 import type { Comment, CommentWithId } from 'types';
-import { handleError } from 'helpers';
 import CommentList from './CommentList';
 import NewComment from './NewComment';
 import styles from './styles/comments.module.css';
@@ -18,6 +18,8 @@ type AddCommentResponse = {
 const Comments = ({ eventId }: Props) => {
   const [comments, setComments] = useState<CommentWithId[]>([]);
   const [showComments, setShowComments] = useState(false);
+
+  const handleError = useHandleError();
 
   const apiRoute = `/api/comments/${eventId}`;
 
@@ -52,7 +54,7 @@ const Comments = ({ eventId }: Props) => {
 
   return (
     <section className={styles.comments}>
-      <button onClick={toggleCommentsHandler}>
+      <button type='button' onClick={toggleCommentsHandler}>
         {showComments ? 'Hide' : 'Show'} Comments
       </button>
 

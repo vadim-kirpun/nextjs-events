@@ -1,6 +1,7 @@
-import { FormEvent, memo, useRef } from 'react';
+import { FormEvent, memo, useContext, useRef } from 'react';
 import axios from 'axios';
-import { handleError } from 'helpers';
+import { useHandleError } from 'helpers';
+import { NotificationContext } from 'store';
 import styles from './styles/newsletter-registration.module.css';
 
 type NewsletterResponse = {
@@ -10,15 +11,28 @@ type NewsletterResponse = {
 const NewsletterRegistration = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const { showNotification } = useContext(NotificationContext);
+  const handleError = useHandleError();
+
   const registrationHandler = async (event: FormEvent) => {
     event.preventDefault();
+
+    showNotification({
+      title: 'Signing up',
+      message: 'Registering for newsletter...',
+      status: 'pending',
+    });
 
     try {
       const { data } = await axios.post<NewsletterResponse>('/api/newsletter', {
         email: inputRef?.current?.value,
       });
 
-      alert(data.message);
+      showNotification({
+        title: 'Success!',
+        message: data.message,
+        status: 'success',
+      });
     } catch (error) {
       handleError(error);
     }
@@ -38,7 +52,7 @@ const NewsletterRegistration = () => {
             aria-label='Your email'
           />
 
-          <button>Register</button>
+          <button type='submit'>Register</button>
         </div>
       </form>
     </section>

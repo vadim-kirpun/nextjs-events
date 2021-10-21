@@ -1,7 +1,7 @@
 import { memo, useContext } from 'react';
 import { getEnterHandler } from 'helpers';
-import NotificationContext from 'store/notification-context';
 import type { INotification } from 'types';
+import { NotificationContext } from 'store';
 import styles from './styles/notification.module.css';
 
 const Notification = (props: INotification) => {
