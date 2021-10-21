@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint -- --fix",
-    "lint-styles": "stylelint \"**/*.css\" --fix",
+    "lint": "eslint --fix",
+    "lint-styles": "stylelint --fix",
     "prepare": "husky install"
   },
   "lint-staged": {

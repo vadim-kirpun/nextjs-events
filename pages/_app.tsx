@@ -1,12 +1,16 @@
 import type { AppProps } from 'next/app';
-import { Layout } from 'components';
+import { Layout, Notification } from 'components';
+import NotificationProvider from 'store/NotificationProvider';
 import 'styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <Layout>
-    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-    <Component {...pageProps} />
-  </Layout>
+  <NotificationProvider>
+    <Layout>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Component {...pageProps} />
+      <Notification title='Hello' message='world' status='pending' />
+    </Layout>
+  </NotificationProvider>
 );
 
 export default MyApp;
