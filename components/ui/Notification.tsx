@@ -5,9 +5,9 @@ import { NotificationContext } from 'store';
 import styles from './styles/notification.module.css';
 
 const Notification = (props: INotification) => {
-  const { hideNotification } = useContext(NotificationContext);
-
   const { title, message, status } = props;
+
+  const { hideNotification } = useContext(NotificationContext);
 
   const activeStyles = `${styles.notification} ${styles[status]}`;
 
