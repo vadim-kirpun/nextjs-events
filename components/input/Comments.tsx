@@ -19,6 +19,7 @@ type AddCommentResponse = {
 const Comments = ({ eventId }: Props) => {
   const [comments, setComments] = useState<CommentWithId[]>([]);
   const [showComments, setShowComments] = useState(false);
+  const [isFetchingComments, setIsFetchingComments] = useState(false);
 
   const { showNotification } = useContext(NotificationContext);
   const handleError = useHandleError();
@@ -27,6 +28,8 @@ const Comments = ({ eventId }: Props) => {
 
   const fetchComments = useCallback(async () => {
     try {
+      setIsFetchingComments(true);
+
       showNotification({
         title: 'Fetching comments',
         message: 'In process...',
@@ -43,6 +46,8 @@ const Comments = ({ eventId }: Props) => {
       });
     } catch (error) {
       handleError(error);
+    } finally {
+      setIsFetchingComments(false);
     }
   }, [apiRoute, handleError, showNotification]);
 
@@ -87,7 +92,9 @@ const Comments = ({ eventId }: Props) => {
       </button>
 
       {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList items={comments} />}
+
+      {showComments && !isFetchingComments && <CommentList items={comments} />}
+      {showComments && isFetchingComments && 'Loading...'}
     </section>
   );
 };
