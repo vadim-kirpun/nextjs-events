@@ -6,13 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix",
-    "lint-styles": "stylelint --fix",
+    "lint": "eslint --fix .",
+    "lint-styles": "stylelint \"**/*.css\" --fix",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "npm run lint",
-    "*.css": "npm run lint-styles",
+    "*.{ts,tsx}": "eslint --fix",
+    "*.css": "stylelint --fix",
     "*.{ts,tsx,css}": "prettier --write"
   },
   "dependencies": {
