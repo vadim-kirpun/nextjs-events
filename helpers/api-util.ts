@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import axios from 'axios';
 import config from 'config.json';
 import { NotificationContext } from 'store';
@@ -37,17 +37,20 @@ export const getFilteredEvents = async (dateFilter: DateFilter) => {
 export const useHandleError = () => {
   const { showNotification } = useContext(NotificationContext);
 
-  return (error: any) => {
-    if (axios.isAxiosError(error)) {
-      const message =
-        (error.response as ErrorResponse).data.message ??
-        'Something went wrong!';
+  return useCallback(
+    (error: any) => {
+      if (axios.isAxiosError(error)) {
+        const message =
+          (error.response as ErrorResponse).data.message ??
+          'Something went wrong!';
 
-      showNotification({
-        title: 'Error!',
-        message,
-        status: 'error',
-      });
-    }
-  };
+        showNotification({
+          title: 'Error!',
+          message,
+          status: 'error',
+        });
+      }
+    },
+    [showNotification]
+  );
 };

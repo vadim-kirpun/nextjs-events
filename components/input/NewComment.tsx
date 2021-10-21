@@ -41,24 +41,30 @@ const NewComment = (props: Props) => {
     <form className={styles.form} onSubmit={sendCommentHandler}>
       <div className={styles.row}>
         <div className={styles.control}>
-          <label htmlFor='email'>Your email</label>
-          <input type='email' id='email' ref={emailInputRef} />
+          <label htmlFor='email'>
+            Your email
+            <input type='email' id='email' ref={emailInputRef} />
+          </label>
         </div>
 
         <div className={styles.control}>
-          <label htmlFor='name'>Your name</label>
-          <input type='text' id='name' ref={nameInputRef} />
+          <label htmlFor='name'>
+            Your name
+            <input type='text' id='name' ref={nameInputRef} />
+          </label>
         </div>
       </div>
 
       <div className={styles.control}>
-        <label htmlFor='comment'>Your comment</label>
-        <textarea id='comment' rows={5} ref={commentInputRef} />
+        <label htmlFor='comment'>
+          Your comment
+          <textarea id='comment' rows={5} ref={commentInputRef} />
+        </label>
       </div>
 
       {isInvalid && <p>Please enter a valid email address and comment!</p>}
 
-      <button>Submit</button>
+      <button type='submit'>Submit</button>
     </form>
   );
 };

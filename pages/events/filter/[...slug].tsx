@@ -84,8 +84,8 @@ export const getServerSideProps = async ({ params }: Params) => {
   const numMonth = Number(month);
 
   const hasError =
-    isNaN(numYear) ||
-    isNaN(numMonth) ||
+    Number.isNaN(numYear) ||
+    Number.isNaN(numMonth) ||
     numYear > 2030 ||
     numYear < 2021 ||
     numMonth > 12 ||
