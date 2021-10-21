@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint --fix .",
     "lint-styles": "stylelint \"**/*.css\" --fix",
+    "format": "prettier --write .",
     "prepare": "husky install"
   },
   "lint-staged": {

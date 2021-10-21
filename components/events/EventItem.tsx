@@ -10,8 +10,8 @@ import Button from '../ui/Button';
 
 type Props = { data: Event };
 
-const EventItem = (props: Props) => {
-  const { id, title, image, date, location } = props.data;
+const EventItem = ({ data }: Props) => {
+  const { id, title, image, date, location } = data;
 
   const humanReadableDate = formatDate(date);
   const formattedAddress = formatAddress(location);

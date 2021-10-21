@@ -24,6 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .sort({ _id: -1 }) // sorting in descending order. So latest comment is the first one
         .toArray();
 
+      // eslint-disable-next-line no-underscore-dangle
       const comments = documents.map((doc) => ({ ...doc, id: doc._id }));
 
       res.status(200).json(comments);

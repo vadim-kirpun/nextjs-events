@@ -35,35 +35,41 @@ const inputs = [
 const EventsSearch = () => {
   const router = useRouter();
 
-  const findEvents = useCallback((year: string, month: string) => {
-    router.push(`/events/filter/${year}/${month}`);
-  }, []);
+  const findEvents = useCallback(
+    (year: string, month: string) => {
+      router.push(`/events/filter/${year}/${month}`);
+    },
+    [router]
+  );
 
   const yearRef = useRef<HTMLSelectElement>(null);
   const monthRef = useRef<HTMLSelectElement>(null);
 
-  const submitHandler = useCallback((event) => {
-    event.preventDefault();
+  const submitHandler = useCallback(
+    (event) => {
+      event.preventDefault();
 
-    if (yearRef.current && monthRef.current) {
-      const selectedYear = yearRef.current.value;
-      const selectedMonth = monthRef.current.value;
+      if (yearRef.current && monthRef.current) {
+        const selectedYear = yearRef.current.value;
+        const selectedMonth = monthRef.current.value;
 
-      findEvents(selectedYear, selectedMonth);
-    }
-  }, []);
+        findEvents(selectedYear, selectedMonth);
+      }
+    },
+    [findEvents]
+  );
 
   return (
     <form className={styles.form} onSubmit={submitHandler}>
       <div className={styles.controls}>
-        {inputs.map(({ id, label, options }) => (
+        {inputs.map(({ id, label: inputLabel, options }) => (
           <div key={id} className={styles.control}>
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={id}>{inputLabel}</label>
 
             <select id={id} ref={id === 'year' ? yearRef : monthRef}>
-              {options.map(({ value, label }) => (
+              {options.map(({ value, label: optionLabel }) => (
                 <option value={value} key={value}>
-                  {label}
+                  {optionLabel}
                 </option>
               ))}
             </select>

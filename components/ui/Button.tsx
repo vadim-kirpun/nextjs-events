@@ -7,16 +7,20 @@ type Props = PropsWithChildren<{
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }>;
 
-const Button = (props: Props) => {
-  if (props.link) {
+const Button = ({ children, link, onClick }: Props) => {
+  if (link) {
     return (
-      <Link href={props.link}>
-        <a className={styles.btn}>{props.children}</a>
+      <Link href={link}>
+        <a className={styles.btn}>{children}</a>
       </Link>
     );
   }
 
-  return <button onClick={props.onClick}>{props.children}</button>;
+  return (
+    <button type='button' onClick={onClick}>
+      {children}
+    </button>
+  );
 };
 
 export default memo(Button);

@@ -3,18 +3,14 @@ import styles from './styles/logistics-item.module.css';
 
 type Props = PropsWithChildren<{ icon: React.ComponentType }>;
 
-const LogisticsItem = (props: Props) => {
-  const { icon: Icon } = props;
+const LogisticsItem = ({ children, icon: Icon }: Props) => (
+  <li className={styles.item}>
+    <span className={styles.icon}>
+      <Icon />
+    </span>
 
-  return (
-    <li className={styles.item}>
-      <span className={styles.icon}>
-        <Icon />
-      </span>
-
-      <span className={styles.content}>{props.children}</span>
-    </li>
-  );
-};
+    <span className={styles.content}>{children}</span>
+  </li>
+);
 
 export default memo(LogisticsItem);
